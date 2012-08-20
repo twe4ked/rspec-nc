@@ -3,7 +3,17 @@ require 'terminal-notifier'
 
 class Nc < RSpec::Core::Formatters::BaseTextFormatter
   def dump_summary(duration, example_count, failure_count, pending_count)
-    say "Finished in #{duration} seconds", summary_line(example_count, failure_count, pending_count)
+    body = []
+    body << "Finished in #{format_duration duration}"
+    body << summary_line(example_count, failure_count, pending_count)
+
+    title = if failure_count > 0
+      "#{failure_count} failed example#{failure_count == 1 ? nil : 's'}"
+    else
+      "Success"
+    end
+
+    say title, body.join("\n")
   end
 
   def dump_pending; end
