@@ -8,9 +8,9 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
     body << summary_line(example_count, failure_count, pending_count)
 
     title = if failure_count > 0
-      "#{failure_count} failed example#{failure_count == 1 ? nil : 's'}"
+      "\u26D4 #{failure_count} failed example#{failure_count == 1 ? nil : 's'}"
     else
-      "Success"
+      "\u2705 Success"
     end
 
     say title, body.join("\n")

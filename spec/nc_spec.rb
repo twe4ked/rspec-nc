@@ -9,10 +9,14 @@ end
 describe Nc do
   let(:formatter)   { Nc.new(StringIO.new) }
 
+  # emoji
+  let(:success) { "\u2705" }
+  let(:failure) { "\u26D4" }
+
   it 'returns the summary' do
     TerminalNotifier.should_receive(:notify).with(
       "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
-      :title => "1 failed example"
+      :title => "#{failure} 1 failed example"
     )
 
     formatter.dump_summary(0.0001, 3, 1, 1)
@@ -21,7 +25,7 @@ describe Nc do
   it 'returns a failing notification' do
     TerminalNotifier.should_receive(:notify).with(
       "Finished in 0.0001 seconds\n1 example, 1 failure",
-      :title => "1 failed example"
+      :title => "#{failure} 1 failed example"
     )
 
     formatter.dump_summary(0.0001, 1, 1, 0)
@@ -30,7 +34,7 @@ describe Nc do
   it 'returns a success notification' do
     TerminalNotifier.should_receive(:notify).with(
       "Finished in 0.0001 seconds\n1 example, 0 failures",
-      :title => "Success"
+      :title => "#{success} Success"
     )
 
     formatter.dump_summary(0.0001, 1, 0, 0)
