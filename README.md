@@ -3,7 +3,7 @@ RSpec Notification Center
 
 rspec-nc is an RSpec formatter for Mountain Lion's Notification Center.
 
-![Screenshot](http://f.cl.ly/items/3X2E0u33130x3E2k2M1H/rspec-nc.jpg)
+![Screenshot](http://twe4ked.github.com/rspec-nc/rspec-nc.jpg)
 
 Installation
 ------------
