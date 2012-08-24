@@ -20,6 +20,7 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
 
   def dump_pending; end
   def dump_failures; end
+  def message(message); end
 
   private
 
