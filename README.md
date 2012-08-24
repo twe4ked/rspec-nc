@@ -1,6 +1,8 @@
 RSpec Notification Center
 =========================
 
+[![Build Status](https://secure.travis-ci.org/twe4ked/rspec-nc.png?branch=master)](http://travis-ci.org/twe4ked/rspec-nc)
+
 rspec-nc is an RSpec formatter for Mountain Lion's Notification Center.
 
 ![Screenshot](http://twe4ked.github.com/rspec-nc/rspec-nc.jpg)
