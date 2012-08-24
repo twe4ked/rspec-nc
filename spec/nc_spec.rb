@@ -1,11 +1,5 @@
 require 'nc'
 
-RSpec.configure do |config|
-  config.color_enabled = true
-  config.formatter = 'doc'
-  config.formatter = 'Nc'
-end
-
 describe Nc do
   let(:formatter)   { Nc.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
