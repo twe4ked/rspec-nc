@@ -4,7 +4,7 @@ require 'terminal-notifier'
 class Nc < RSpec::Core::Formatters::BaseTextFormatter
   def dump_summary(duration, example_count, failure_count, pending_count)
     body = []
-    body << "Finished in #{format_duration duration}"
+    body << "Finished in #{duration}"
     body << summary_line(example_count, failure_count, pending_count)
 
     name = File.basename(File.expand_path '.')
