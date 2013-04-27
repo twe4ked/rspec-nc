@@ -2,6 +2,7 @@ require 'nc_first_fail'
 
 describe NcFirstFail do
   let(:formatter) { NcFirstFail.new(StringIO.new) }
+  let(:current_dir) { File.basename(File.expand_path '.') }
   let(:example) { double 'example' }
   let(:example2) { double 'example2' }
 
@@ -15,8 +16,8 @@ describe NcFirstFail do
   end
 
   it 'notifies the first failure only' do
-    TerminalNotifier.should_receive(:notify).with(exception,
-      :title => "#{failure} #{description}"
+    TerminalNotifier.should_receive(:notify).with("#{description}\n#{exception}",
+      :title => "#{failure} #{current_dir}: Failure"
     )
 
     formatter.example_failed(example)
