@@ -25,6 +25,6 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
   private
 
   def say(title, body)
-    TerminalNotifier.notify body, :title => title
+    TerminalNotifier.notify body, :title => title if TerminalNotifier.available?
   end
 end
