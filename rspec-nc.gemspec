@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/twe4ked/rspec-nc'
 
   gem.add_dependency 'terminal-notifier', '~> 1.4.2'
-  gem.add_dependency 'rspec', '~> 2.9'
+  gem.add_dependency 'rspec', '>= 2.9'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

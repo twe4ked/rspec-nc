@@ -1,0 +1,4 @@
+gemfile:
+  - gemfiles/rspec29.gemfile
+  - gemfiles/rspec3.gemfile
+script: 'bundle exec rake spec'

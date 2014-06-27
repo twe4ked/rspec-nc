@@ -9,7 +9,7 @@ describe Nc do
   let(:failure) { "\u26D4" }
 
   it 'returns the summary' do
-    TerminalNotifier.should_receive(:notify).with(
+    expect(TerminalNotifier).to receive(:notify).with(
       "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
       :title => "#{failure} #{current_dir}: 1 failed example"
     )
@@ -18,7 +18,7 @@ describe Nc do
   end
 
   it 'returns a failing notification' do
-    TerminalNotifier.should_receive(:notify).with(
+    expect(TerminalNotifier).to receive(:notify).with(
       "Finished in 0.0001 seconds\n1 example, 1 failure",
       :title => "#{failure} #{current_dir}: 1 failed example"
     )
@@ -27,7 +27,7 @@ describe Nc do
   end
 
   it 'returns a success notification' do
-    TerminalNotifier.should_receive(:notify).with(
+    expect(TerminalNotifier).to receive(:notify).with(
       "Finished in 0.0001 seconds\n1 example, 0 failures",
       :title => "#{success} #{current_dir}: Success"
     )
