@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description = 'https://github.com/twe4ked/rspec-nc'
   gem.summary = "RSpec formatter for Mountain Lion's Notification Center"
   gem.homepage = 'https://github.com/twe4ked/rspec-nc'
+  gem.license = 'MIT'
 
   gem.add_dependency 'terminal-notifier', '~> 1.4.2'
   gem.add_dependency 'rspec', '>= 2.9'
