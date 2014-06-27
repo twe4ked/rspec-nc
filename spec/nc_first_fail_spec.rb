@@ -10,12 +10,10 @@ describe NcFirstFail do
   let(:exception) { 'exception' }
   let(:description) { 'description' }
 
-  before do
-    example.should_receive(:metadata).any_number_of_times.and_return({:full_description => description})
-    example.should_receive(:exception).any_number_of_times.and_return(exception)
-  end
-
   it 'notifies the first failure only' do
+    example.stub(:metadata).and_return({:full_description => description})
+    example.stub(:exception).and_return(exception)
+
     TerminalNotifier.should_receive(:notify).with("#{description}\n#{exception}",
       :title => "#{failure} #{current_dir}: Failure"
     )
