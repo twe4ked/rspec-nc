@@ -34,3 +34,13 @@ Contributing
 Found an issue? Have a great idea? Want to help? Great! Create an issue issue
 for it, or even better; fork the project and fix the problem yourself. Pull
 requests are always welcome. :)
+
+### Running the specs
+
+The default rake task uses [WWTD] to test multiple versions of RSpec.
+
+``` ruby
+rake
+```
+
+[WWTD]: https://github.com/grosser/wwtd
