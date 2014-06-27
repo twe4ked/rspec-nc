@@ -12,7 +12,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rspec', '>= 2.9'
 
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'wwtd'
 
   gem.files         = `git ls-files`.split($\)
