@@ -11,11 +11,11 @@ rspec-nc is an RSpec formatter for Mountain Lion's Notification Center.
 Installation
 ------------
 
-Installing rspec-nc is easy. Just put it in your Gemfile (`gem 'rspec-nc'`) and
-run your specs like this from now on:
+Installing rspec-nc is easy.
+Just put it in your Gemfile (`gem 'rspec-nc'`) and run your specs:
 
 ```
-$ rspec --format=doc --format=Nc
+rspec --format=doc --format=Nc
 ```
 
 You will want to specify another formatter as rspec-nc does not provide any
