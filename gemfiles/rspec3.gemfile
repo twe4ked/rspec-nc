@@ -3,5 +3,5 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'wwtd'
 
-gem 'terminal-notifier', '~> 1.4.2'
+gem 'terminal-notifier', '>= 1.4'
 gem 'rspec', '~> 3.0'

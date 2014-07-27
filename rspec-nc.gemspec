@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage = 'https://github.com/twe4ked/rspec-nc'
   gem.license = 'MIT'
 
-  gem.add_dependency 'terminal-notifier', '~> 1.6.1'
+  gem.add_dependency 'terminal-notifier', '>= 1.4'
   gem.add_dependency 'rspec', '>= 2.9'
 
   gem.add_development_dependency 'rake'
