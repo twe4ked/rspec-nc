@@ -1,8 +1,16 @@
 require 'nc'
 
 class NcFail < Nc
-  def say(title, body)
+  if RSpec::Core::Formatters.respond_to? :register
+    RSpec::Core::Formatters.register self, :example_failed
+  end
+
+  def initialize(_)
     @failed_examples ||= []
+    super
+  end
+
+  def say(title, body)
     return if @failed_examples.size <= 0
     super
   end

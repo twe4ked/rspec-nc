@@ -1,6 +1,10 @@
 require 'nc'
 
 class NcFirstFail < Nc
+  if RSpec::Core::Formatters.respond_to? :register
+    RSpec::Core::Formatters.register self, :example_failed
+  end
+
   def example_failed(example)
     @failed_examples ||= []
     if @failed_examples.size == 0

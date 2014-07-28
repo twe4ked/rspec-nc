@@ -3,10 +3,20 @@ require 'terminal-notifier'
 
 class Nc < RSpec::Core::Formatters::BaseTextFormatter
   if RSpec::Core::Formatters.respond_to? :register
-    RSpec::Core::Formatters.register self.class, :example_failed
+    RSpec::Core::Formatters.register self, :dump_summary
   end
 
-  def dump_summary(duration, example_count, failure_count, pending_count)
+  if RSpec::Core::Version::STRING =~ /^3/
+    define_method(:dump_summary) do |summary|
+      output_summary(summary.duration, summary.example_count, summary.failure_count, summary.pending_count)
+    end
+  else
+    define_method(:dump_summary) do |duration, example_count, failure_count, pending_count|
+      output_summary(duration, example_count, failure_count, pending_count)
+    end
+  end
+
+  def output_summary(duration, example_count, failure_count, pending_count)
     body = []
     body << "Finished in #{_format_duration duration}"
     body << _summary_line(example_count, failure_count, pending_count)
@@ -22,9 +32,11 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
     say title, body.join("\n")
   end
 
-  def dump_pending; end
-  def dump_failures; end
-  def message(message); end
+  unless RSpec::Core::Version::STRING =~ /^3/
+    define_method(:dump_pending) { }
+    define_method(:dump_failures) { }
+    define_method(:message) { |message| }
+  end
 
   private
 

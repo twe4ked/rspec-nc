@@ -14,7 +14,7 @@ describe Nc do
       :title => "#{failure} #{current_dir}: 1 failed example"
     )
 
-    formatter.dump_summary(0.0001, 3, 1, 1)
+    call_dump_summary(formatter, 0.0001, 3, 1, 1)
   end
 
   it 'returns a failing notification' do
@@ -23,7 +23,7 @@ describe Nc do
       :title => "#{failure} #{current_dir}: 1 failed example"
     )
 
-    formatter.dump_summary(0.0001, 1, 1, 0)
+    call_dump_summary(formatter, 0.0001, 1, 1, 0)
   end
 
   it 'returns a success notification' do
@@ -32,6 +32,17 @@ describe Nc do
       :title => "#{success} #{current_dir}: Success"
     )
 
-    formatter.dump_summary(0.0001, 1, 0, 0)
+    call_dump_summary(formatter, 0.0001, 1, 0, 0)
+  end
+
+  private
+
+  def call_dump_summary(formatter, duration, example_count, failure_count, pending_count)
+    if RSpec::Core::Version::STRING =~ /^3/
+      summary = Struct.new(:duration, :example_count, :failure_count, :pending_count).new(duration, example_count, failure_count, pending_count)
+      formatter.dump_summary(summary)
+    else
+      formatter.dump_summary(duration, example_count, failure_count, pending_count)
+    end
   end
 end
