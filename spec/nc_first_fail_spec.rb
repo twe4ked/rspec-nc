@@ -34,7 +34,7 @@ describe NcFirstFail do
       formatter.dump_summary(0.0001, 2, 1, 0)
     end
 
-    it "notifies in the end if there is no failures" do
+    it 'notifies in the end if there is no failures' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n2 examples, 0 failures",
         :title => "#{success} #{current_dir}: Success"
@@ -73,7 +73,7 @@ describe NcFirstFail do
       formatter.dump_summary(notification)
     end
 
-    it "notifies in the end if there is no failures" do
+    it 'notifies in the end if there is no failures' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n2 examples, 0 failures",
         :title => "#{success} #{current_dir}: Success"

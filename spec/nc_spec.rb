@@ -50,7 +50,7 @@ describe Nc do
       allow(formatter.class).to receive(:rspec_3?).and_return(true)
     end
 
-    it "shows the summary" do
+    it 'shows the summary' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
         :title => "#{failure} #{current_dir}: 1 failed example"
