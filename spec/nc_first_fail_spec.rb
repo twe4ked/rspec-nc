@@ -45,12 +45,12 @@ describe NcFirstFail do
   end
 
   context 'with RSpec 3' do
-    let(:notification) {
+    let(:notification) do
       Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 3, 1, 1)
-    }
-    let(:success_notification) {
+    end
+    let(:success_notification) do
       Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 2, 0, 0)
-    }
+    end
     before do
       allow(formatter.class).to receive(:rspec_3?).and_return(true)
     end
