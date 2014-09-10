@@ -8,7 +8,6 @@ describe Nc do
   let(:success) { "\u2705" }
   let(:failure) { "\u26D4" }
 
-
   context 'with RSpec 2' do
     before do
       allow(formatter.class).to receive(:rspec_3?).and_return(false)

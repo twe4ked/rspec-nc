@@ -51,6 +51,7 @@ describe NcFirstFail do
     let(:success_notification) do
       Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 2, 0, 0)
     end
+
     before do
       allow(formatter.class).to receive(:rspec_3?).and_return(true)
     end
