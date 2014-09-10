@@ -9,7 +9,7 @@ describe Nc do
   let(:failure) { "\u26D4" }
 
 
-  context 'for rspec 2' do
+  context 'with RSpec 2' do
     before do
       allow(formatter.class).to receive(:rspec_3?).and_return(false)
     end
@@ -42,7 +42,7 @@ describe Nc do
     end
   end
 
-  context 'for rspec 3' do
+  context 'with RSpec 3' do
     let(:notification) {
       Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 3, 1, 1)
     }
