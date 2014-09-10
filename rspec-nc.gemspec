@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |gem|
   gem.name = 'rspec-nc'
-  gem.version = '0.1.1'
+  gem.version = '0.2.0'
   gem.authors = ['Odin Dutton']
   gem.email = ['odindutton@gmail.com']
   gem.description = 'https://github.com/twe4ked/rspec-nc'
