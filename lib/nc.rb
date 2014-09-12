@@ -2,7 +2,6 @@ require 'rspec/core/formatters/base_text_formatter'
 require 'terminal-notifier'
 
 class Nc < RSpec::Core::Formatters::BaseTextFormatter
-
   def self.rspec_3?
     RSpec::Core::Version::STRING.split('.').first == "3"
   end
