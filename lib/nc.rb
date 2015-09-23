@@ -51,7 +51,7 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
     if respond_to? :format_duration
       format_duration duration
     else
-      require 'rspec/core/formatters/helpers'
+      require 'rspec/core/formatters/helpers' unless Object.const_defined?('RSpec')
       RSpec::Core::Formatters::Helpers.format_duration duration
     end
   end
