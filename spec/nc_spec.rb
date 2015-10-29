@@ -58,4 +58,12 @@ describe Nc do
       formatter.dump_summary(notification)
     end
   end
+
+  %w{dump_pending dump_failures message seed close}.each do |event|
+    it "produces no output for the #{event} notification" do
+      $stdout = StringIO.new
+      formatter.send(event, double('notification'))
+      expect($stdout.string).to be_empty
+    end
+  end
 end

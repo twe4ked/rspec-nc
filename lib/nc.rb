@@ -39,6 +39,8 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
   def dump_pending(*args); end
   def dump_failures(*args); end
   def message(message); end
+  def seed(notification); end
+  def close(notification); end
 
   private
 
