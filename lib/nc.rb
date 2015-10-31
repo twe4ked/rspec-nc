@@ -43,7 +43,7 @@ class Nc < RSpec::Core::Formatters::BaseTextFormatter
   private
 
   def say(title, body)
-    TerminalNotifier.notify body, :title => title
+    TerminalNotifier.notify body, :title => title if TerminalNotifier.available?
   end
 
   def _format_duration(duration)
