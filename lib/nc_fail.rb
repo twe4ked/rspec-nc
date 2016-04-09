@@ -1,18 +1,11 @@
 require 'nc'
 
 class NcFail < Nc
-  if rspec_3?
-    RSpec::Core::Formatters.register self, :example_failed
-  end
+  RSpec::Core::Formatters.register self, :dump_summary
 
-  def say(title, body)
-    @failed_examples ||= []
-    return if @failed_examples.size <= 0
-    super
-  end
-
-  def example_failed(failure)
-    @failed_examples ||= []
-    @failed_examples << failure
+  def dump_summary(notification)
+    if notification.failure_count > 0
+      super
+    end
   end
 end

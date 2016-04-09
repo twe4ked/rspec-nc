@@ -1,86 +1,51 @@
 require 'nc_first_fail'
 
 describe NcFirstFail do
-  let(:formatter) { NcFirstFail.new(StringIO.new) }
+  let(:formatter)   { NcFirstFail.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
-  let(:example) { double 'example' }
-  let(:example2) { double 'example2' }
-
+  let(:failure_count) { 1 }
   let(:failure) { "\u26D4" }
-  let(:success) { "\u2705" }
-  let(:exception) { 'exception' }
-  let(:description) { 'description' }
 
-  context 'with RSpec 2' do
-    before do
-      allow(formatter.class).to receive(:rspec_3?).and_return(false)
-    end
-
-    it 'notifies the first failure only' do
-      allow(example).to receive(:metadata).and_return({:full_description => description})
-      allow(example).to receive(:exception).and_return(exception)
-
-      expect(TerminalNotifier).to receive(:notify).with("#{description}\n#{exception}",
-        :title => "#{failure} #{current_dir}: Failure"
-      ).once
-
-      formatter.example_failed(example)
-      formatter.example_failed(example2)
-    end
-
-    it "doesn't notify in the end if there has been any failures" do
-      expect(TerminalNotifier).to_not receive(:notify)
-
-      formatter.dump_summary(0.0001, 2, 1, 0)
-    end
-
-    it 'notifies in the end if there is no failures' do
-      expect(TerminalNotifier).to receive(:notify).with(
-        "Finished in 0.0001 seconds\n2 examples, 0 failures",
-        :title => "#{success} #{current_dir}: Success"
-      )
-
-      formatter.dump_summary(0.0001, 2, 0, 0)
-    end
+  let(:summary_notification) do
+    instance_double(RSpec::Core::Notifications::SummaryNotification,
+      formatted_duration: '0.0001 seconds',
+      totals_line: '3 examples, 1 failure, 1 pending',
+      failure_count: failure_count,
+    )
   end
 
-  context 'with RSpec 3' do
-    let(:notification) do
-      Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 3, 1, 1)
-    end
-    let(:success_notification) do
-      Struct.new(:duration, :example_count, :failure_count, :pending_count).new(0.0001, 2, 0, 0)
-    end
+  let(:failed_example_notification) do
+    instance_double(RSpec::Core::Notifications::FailedExampleNotification,
+      example: double(:example,
+        metadata: {full_description: '_full_description_'},
+        exception: '_exception_',
+      ),
+    )
+  end
 
-    before do
-      allow(formatter.class).to receive(:rspec_3?).and_return(true)
-    end
+  it 'notifies the first failure only' do
+    expect(TerminalNotifier).to receive(:notify).with(
+      "_full_description_\n_exception_",
+      title: "#{failure} #{current_dir}: Failure",
+    )
 
-    it 'notifies the first failure only' do
-      allow(example).to receive(:metadata).and_return({:full_description => description})
-      allow(example).to receive(:exception).and_return(exception)
+    formatter.example_failed failed_example_notification
 
-      expect(TerminalNotifier).to receive(:notify).with("#{description}\n#{exception}",
-        :title => "#{failure} #{current_dir}: Failure"
-      ).once
+    expect(TerminalNotifier).to_not receive(:notify)
 
-      formatter.example_failed(double(example: example))
-      formatter.example_failed(double(example: example2))
-    end
+    formatter.example_failed failed_example_notification
 
-    it "doesn't notify in the end if there has been any failures" do
-      expect(TerminalNotifier).to_not receive(:notify)
+    expect(TerminalNotifier).to_not receive(:notify)
 
-      formatter.dump_summary(notification)
-    end
+    formatter.dump_summary summary_notification
+  end
+
+
+  context 'with all examples passing' do
+    let(:failure_count) { 0 }
 
     it 'notifies in the end if there is no failures' do
-      expect(TerminalNotifier).to receive(:notify).with(
-        "Finished in 0.0001 seconds\n2 examples, 0 failures",
-        :title => "#{success} #{current_dir}: Success"
-      )
-
-      formatter.dump_summary(success_notification)
+      formatter.dump_summary summary_notification
     end
   end
 end

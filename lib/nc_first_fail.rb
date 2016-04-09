@@ -1,23 +1,21 @@
 require 'nc'
 
 class NcFirstFail < Nc
-  if rspec_3?
-    RSpec::Core::Formatters.register self, :example_failed
-  end
+  RSpec::Core::Formatters.register self, :example_failed
 
-  def example_failed(example)
-    # For rspec3
-    example = example.example if example.respond_to?(:example)
-    @failed_examples ||= []
-    if @failed_examples.size == 0
-      name = File.basename(File.expand_path '.')
-      say "\u26D4 #{name}: Failure", "#{example.metadata[:full_description]}\n#{example.exception}"
+  def example_failed(notification)
+    example = notification.example
+    body = "#{example.metadata[:full_description]}\n#{example.exception}"
+    title = "\u26D4 #{directory_name}: Failure"
+    unless @failed
+      TerminalNotifier.notify body, title: title
     end
-    @failed_examples << example
+    @failed = true
   end
 
-  def dump_summary(*args)
-    failure_count = self.class.rspec_3? ? args[0].failure_count : args[2]
-    super if failure_count == 0
+  def dump_summary(notification)
+    if notification.failure_count == 0
+      super
+    end
   end
 end
