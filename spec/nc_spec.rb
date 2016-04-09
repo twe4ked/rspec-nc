@@ -8,21 +8,23 @@ RSpec.describe Nc do
   let(:success) { "\u2705" }
   let(:failure) { "\u26D4" }
 
-  let(:notification) do
-    instance_double(RSpec::Core::Notifications::SummaryNotification,
-      formatted_duration: '0.0001 seconds',
-      totals_line: '3 examples, 1 failure, 1 pending',
-      failure_count: 1,
-    )
-  end
+  context 'with failing examples' do
+    let(:notification) do
+      instance_double(RSpec::Core::Notifications::SummaryNotification,
+        formatted_duration: '0.0001 seconds',
+        totals_line: '3 examples, 1 failure, 1 pending',
+        failure_count: 1,
+      )
+    end
 
-  it 'shows the summary' do
-    expect(TerminalNotifier).to receive(:notify).with(
-      "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
-      :title => "#{failure} #{current_dir}: 1 failed example"
-    )
+    it 'sends a failure summary notification' do
+      expect(TerminalNotifier).to receive(:notify).with(
+        "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
+        :title => "#{failure} #{current_dir}: 1 failed example"
+      )
 
-    formatter.dump_summary(notification)
+      formatter.dump_summary(notification)
+    end
   end
 
   context 'with all examples passing' do
@@ -34,7 +36,7 @@ RSpec.describe Nc do
       )
     }
 
-    it 'shows the summary' do
+    it 'sends a success summary notification' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n3 examples, 0 failures, 1 pending",
         :title => "#{success} #{current_dir}: Success"

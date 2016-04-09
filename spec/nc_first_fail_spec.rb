@@ -23,7 +23,7 @@ describe NcFirstFail do
     )
   end
 
-  it 'notifies the first failure only' do
+  it 'sends a failure notification for the first failure only' do
     expect(TerminalNotifier).to receive(:notify).with(
       "_full_description_\n_exception_",
       title: "#{failure} #{current_dir}: Failure",
@@ -44,7 +44,7 @@ describe NcFirstFail do
   context 'with all examples passing' do
     let(:failure_count) { 0 }
 
-    it 'notifies in the end if there is no failures' do
+    it 'sends a success summary notification' do
       formatter.dump_summary summary_notification
     end
   end
