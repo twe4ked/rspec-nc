@@ -4,10 +4,6 @@ RSpec.describe Nc do
   let(:formatter) { Nc.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
 
-  # emoji
-  let(:success) { "\u2705" }
-  let(:failure) { "\u26D4" }
-
   context 'with failing examples' do
     let(:notification) do
       instance_double(RSpec::Core::Notifications::SummaryNotification,
@@ -20,7 +16,7 @@ RSpec.describe Nc do
     it 'sends a failure summary notification' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
-        :title => "#{failure} #{current_dir}: 1 failed example"
+        :title => "#{Nc::FAILURE_EMOJI} #{current_dir}: 1 failed example"
       )
       formatter.dump_summary(notification)
     end
@@ -38,7 +34,7 @@ RSpec.describe Nc do
     it 'sends a success summary notification' do
       expect(TerminalNotifier).to receive(:notify).with(
         "Finished in 0.0001 seconds\n3 examples, 0 failures, 1 pending",
-        :title => "#{success} #{current_dir}: Success"
+        :title => "#{Nc::SUCCESS_EMOJI} #{current_dir}: Success"
       )
       formatter.dump_summary(notification)
     end

@@ -6,7 +6,7 @@ class NcFirstFail < Nc
   def example_failed(notification)
     example = notification.example
     body = "#{example.metadata[:full_description]}\n#{example.exception}"
-    title = "\u26D4 #{directory_name}: Failure"
+    title = "#{FAILURE_EMOJI} #{directory_name}: Failure"
     unless @failed
       TerminalNotifier.notify body, title: title
     end

@@ -4,7 +4,6 @@ describe NcFirstFail do
   let(:formatter)   { NcFirstFail.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
   let(:failure_count) { 1 }
-  let(:failure) { "\u26D4" }
 
   let(:summary_notification) do
     instance_double(RSpec::Core::Notifications::SummaryNotification,
@@ -26,7 +25,7 @@ describe NcFirstFail do
   it 'sends a failure notification for the first failure only' do
     expect(TerminalNotifier).to receive(:notify).with(
       "_full_description_\n_exception_",
-      title: "#{failure} #{current_dir}: Failure",
+      title: "#{Nc::FAILURE_EMOJI} #{current_dir}: Failure",
     )
     formatter.example_failed failed_example_notification
 
