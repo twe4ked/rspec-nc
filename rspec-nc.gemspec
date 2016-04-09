@@ -13,7 +13,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rspec', '>= 3'
 
   gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'wwtd'
   gem.add_development_dependency 'pry'
 
   gem.files = `git ls-files`.split($\)

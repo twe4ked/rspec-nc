@@ -37,13 +37,9 @@ requests are always welcome. :)
 
 ### Running the specs
 
-The default rake task uses [WWTD] to test multiple versions of RSpec.
-
 ``` ruby
 rake
 
 # with a formatter
 FORMATTER=Nc rake
 ```
-
-[WWTD]: https://github.com/grosser/wwtd
