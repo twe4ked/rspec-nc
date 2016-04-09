@@ -1,7 +1,7 @@
 require 'nc'
 
 RSpec.describe Nc do
-  let(:formatter)   { Nc.new(StringIO.new) }
+  let(:formatter) { Nc.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
 
   # emoji
