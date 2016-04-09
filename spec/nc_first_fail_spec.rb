@@ -28,15 +28,12 @@ describe NcFirstFail do
       "_full_description_\n_exception_",
       title: "#{failure} #{current_dir}: Failure",
     )
-
     formatter.example_failed failed_example_notification
 
     expect(TerminalNotifier).to_not receive(:notify)
-
     formatter.example_failed failed_example_notification
 
     expect(TerminalNotifier).to_not receive(:notify)
-
     formatter.dump_summary summary_notification
   end
 

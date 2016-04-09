@@ -22,7 +22,6 @@ RSpec.describe Nc do
         "Finished in 0.0001 seconds\n3 examples, 1 failure, 1 pending",
         :title => "#{failure} #{current_dir}: 1 failed example"
       )
-
       formatter.dump_summary(notification)
     end
   end
@@ -41,7 +40,6 @@ RSpec.describe Nc do
         "Finished in 0.0001 seconds\n3 examples, 0 failures, 1 pending",
         :title => "#{success} #{current_dir}: Success"
       )
-
       formatter.dump_summary(notification)
     end
   end
