@@ -1,7 +1,7 @@
 require 'nc_first_fail'
 
 describe NcFirstFail do
-  let(:formatter)   { NcFirstFail.new(StringIO.new) }
+  let(:formatter) { NcFirstFail.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
   let(:failure_count) { 1 }
   let(:summary_notification) do
