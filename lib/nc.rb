@@ -24,6 +24,8 @@ class Nc < RSpec::Core::Formatters::BaseFormatter
   end
 
   def notify(title, body)
-    TerminalNotifier.notify body, title: title
+    if TerminalNotifier.available?
+      TerminalNotifier.notify body, title: title
+    end
   end
 end

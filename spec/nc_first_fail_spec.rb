@@ -19,6 +19,11 @@ describe NcFirstFail do
       ),
     )
   end
+  let(:terminal_notifier_available) { true }
+
+  before do
+    allow(TerminalNotifier).to receive(:available?).and_return(terminal_notifier_available)
+  end
 
   it 'sends a failure notification for the first failure only' do
     expect(TerminalNotifier).to receive(:notify).with(
@@ -40,6 +45,16 @@ describe NcFirstFail do
 
     it 'sends a success summary notification' do
       formatter.dump_summary summary_notification
+    end
+  end
+
+  context 'when terminal notifier is not availiable' do
+    let(:terminal_notifier_available) { false }
+
+    it 'does not send a notification' do
+      expect(TerminalNotifier).to_not receive(:notify)
+      formatter.example_failed(double.as_null_object)
+      formatter.dump_summary(double.as_null_object)
     end
   end
 end
