@@ -8,7 +8,7 @@ class NcFirstFail < Nc
     body = "#{example.metadata[:full_description]}\n#{example.exception}"
     title = "#{FAILURE_EMOJI} #{directory_name}: Failure"
     unless @failed
-      TerminalNotifier.notify body, title: title
+      notify title, body
     end
     @failed = true
   end

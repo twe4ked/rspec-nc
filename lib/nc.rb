@@ -14,12 +14,16 @@ class Nc < RSpec::Core::Formatters::BaseFormatter
     else
       "#{SUCCESS_EMOJI} #{directory_name}: Success"
     end
-    TerminalNotifier.notify body, title: title
+    notify title, body
   end
 
   private
 
   def directory_name
     File.basename File.expand_path '.'
+  end
+
+  def notify(title, body)
+    TerminalNotifier.notify body, title: title
   end
 end
