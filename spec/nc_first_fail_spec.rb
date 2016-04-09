@@ -4,7 +4,6 @@ describe NcFirstFail do
   let(:formatter)   { NcFirstFail.new(StringIO.new) }
   let(:current_dir) { File.basename(File.expand_path '.') }
   let(:failure_count) { 1 }
-
   let(:summary_notification) do
     instance_double(RSpec::Core::Notifications::SummaryNotification,
       formatted_duration: '0.0001 seconds',
@@ -12,7 +11,6 @@ describe NcFirstFail do
       failure_count: failure_count,
     )
   end
-
   let(:failed_example_notification) do
     instance_double(RSpec::Core::Notifications::FailedExampleNotification,
       example: double(:example,

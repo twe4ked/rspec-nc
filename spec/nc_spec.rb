@@ -23,13 +23,13 @@ RSpec.describe Nc do
   end
 
   context 'with all examples passing' do
-    let(:notification) {
+    let(:notification) do
       instance_double(RSpec::Core::Notifications::SummaryNotification,
         formatted_duration: '0.0001 seconds',
         totals_line: '3 examples, 0 failures, 1 pending',
         failure_count: 0,
       )
-    }
+    end
 
     it 'sends a success summary notification' do
       expect(TerminalNotifier).to receive(:notify).with(
