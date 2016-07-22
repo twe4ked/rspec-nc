@@ -12,7 +12,7 @@ Installation
 ------------
 
 Installing rspec-nc is easy.
-Just put it in your Gemfile (`gem 'rspec-nc'`) and run your specs:
+Just put it in your Gemfile (`gem 'rspec-nc', require: false`) and run your specs:
 
 ```
 rspec --format=doc --format=Nc
