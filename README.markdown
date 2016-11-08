@@ -28,6 +28,11 @@ in your .rspec file:
 --format Nc
 ```
 
+There are two other formatters included:
+
+- `NcFail` – Only notifies if there is a failure
+- `NcFirstFail` – Only notifies on the first failure
+
 Contributing
 ------------
 
