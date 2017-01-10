@@ -24,6 +24,6 @@ class Nc < RSpec::Core::Formatters::BaseFormatter
   end
 
   def notify(title, body)
-    TerminalNotifier.notify body, title: title
+    TerminalNotifier.notify body, title: title, group: directory_name, remove: directory_name
   end
 end
