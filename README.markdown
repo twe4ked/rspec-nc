@@ -33,6 +33,11 @@ There are two other formatters included:
 - `NcFail` – Only notifies if there is a failure
 - `NcFirstFail` – Only notifies on the first failure
 
+### tmux
+
+Using rspec-nc under tmux requires `reattach-to-user-namespace`,
+see: [julienXX/terminal-notifier#115].
+
 Contributing
 ------------
 
@@ -48,3 +53,5 @@ rake
 # with a formatter
 FORMATTER=Nc rake
 ```
+
+[julienXX/terminal-notifier#115]: https://github.com/julienXX/terminal-notifier/issues/115
